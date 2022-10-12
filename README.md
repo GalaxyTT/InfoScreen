@@ -1,2 +1,0 @@
-# InfoScreen
-InfoScreen
