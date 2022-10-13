@@ -11,5 +11,11 @@ class Klassen extends Model
     protected $fillable = [
         "klasse"
     ];
+
     protected $table = "klassen";
+
+    public function getStudents()
+    {
+        return $this->hasMany(Schueler::class); //Gibt alle Schüler als einzelne Models zurück, welche sich in dieser Klasse befinden.
+    }
 }

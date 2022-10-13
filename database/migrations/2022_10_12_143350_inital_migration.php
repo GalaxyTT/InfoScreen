@@ -34,10 +34,8 @@ class InitalMigration extends Migration
         Schema::create('gruppen', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('lehrer_id')->unsigned()->index()->nullable();
-            $table->foreignId('raum_id')->unsigned()->index()->nullable();
-            $table->foreign('lehrer_id')->references('id')->on('lehrer')->onDelete('cascade');
-            $table->foreign('raum_id')->references('id')->on('raeume')->onDelete('cascade');
+            $table->foreignId('lehrer_id')->nullable()->constrained('lehrer')->onDelete('cascade');
+            $table->foreignId('raum_id')->nullable()->constrained('raeume')->onDelete('cascade');
             $table->timestamps();
         });
         
@@ -45,8 +43,8 @@ class InitalMigration extends Migration
             $table->id();
             $table->string('nachname');
             $table->string('vorname');
-            $table->foreignId('klassen_id')->nullable()->constrained('klassen')->onUpdate('cascade');
-            $table->foreignId('gruppen_id')->nullable()->constrained('gruppen')->onUpdate('cascade');
+            $table->foreignId('klassen_id')->nullable()->constrained('klassen')->onDelete('cascade');
+            $table->foreignId('gruppen_id')->nullable()->constrained('gruppen')->onDelete('cascade');
             $table->timestamps();
         });
     }
