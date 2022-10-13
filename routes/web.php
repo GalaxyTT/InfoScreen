@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BackendController;
+use App\Http\Controllers\GpioApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/backend', [BackendController::class, 'index'])
+    ->name('backend');
+
+
+Route::get('/gpio', [GpioApiController::class, 'index'])
+    ->name('gpio');
