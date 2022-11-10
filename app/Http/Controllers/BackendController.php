@@ -9,7 +9,7 @@ class BackendController extends Controller
 {
     public function index(){
         $classes = Klassen::all();
-
+    
         return view('backend', ['klassen' => $classes]);
     }
 }
