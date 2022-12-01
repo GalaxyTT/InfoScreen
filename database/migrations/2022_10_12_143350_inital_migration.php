@@ -47,6 +47,14 @@ class InitalMigration extends Migration
             $table->foreignId('gruppen_id')->nullable()->constrained('gruppen')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('flags', function (Blueprint $table)
+        {
+            $table->id();
+            $table->string('flagName');
+            $table->boolean('isFlagSet');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -61,5 +69,6 @@ class InitalMigration extends Migration
         Schema::dropIfExists("lehrer");
         Schema::dropIfExists("raeume");
         Schema::dropIfExists("klassen");
+        Schema::dropIfExists("flags");
     }
 }

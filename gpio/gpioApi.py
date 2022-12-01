@@ -3,18 +3,26 @@ import pycurl
 import certifi
 from io import BytesIO
 
-def button_callback(channel):
+def setWerbungFalseButton_callback(channel):
+    c.setopt(c.URL, 'http://127.0.0.1:8000/gpio/0')
     c.perform()
-    print("Button was pushed!")
+    print("set werbung flag to false")
+
+def setWerbungTrueButton_callback(channel):
+    c.setopt(c.URL, 'http://127.0.0.1:8000/gpio/1')
+    c.perform()
+    print("set werbung flag to true")
 
 GPIO.setwarnings(False) 
 GPIO.setmode(GPIO.BCM) 
 GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(22,GPIO.RISING,callback=button_callback) 
+GPIO.add_event_detect(22,GPIO.RISING,callback=setWerbungFalseButton_callback) 
+
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.add_event_detect(27,GPIO.RISING,callback=setWerbungTrueButton_callback) 
 
 buffer = BytesIO()
 c = pycurl.Curl()
-c.setopt(c.URL, 'http://127.0.0.1:8000/gpio')
 c.setopt(c.WRITEDATA, buffer)
 c.setopt(c.CAINFO, certifi.where())
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\GpioApiController;
+use App\Http\Controllers\WerbungController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +16,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+        return view('welcome');
+    });
 
-Route::get('/backend', [BackendController::class, 'index'])
-    ->name('backend');
+    Route::get('/backend', [BackendController::class, 'index'])
+        ->name('backend');
+
+    Route::get('/backend/classes', [BackendController::class, 'getClasses'])
+        ->name('classes');
+
+    Route::get('/backend/groups', [BackendController::class, 'getGroups'])
+        ->name('groups');
+
+    Route::get('/backend/settings', [BackendController::class, 'getSettings'])
+        ->name('settings');
+
+    Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
+        ->name('gpio');
+
+    Route::get('/werbung', [WerbungController::class, 'index'])
+        ->name('werbung');
+
+    Route::get('/info', function()
+    {
+        return view('info');
+    });
 
 
-Route::get('/gpio', [GpioApiController::class, 'index'])
-    ->name('gpio');
