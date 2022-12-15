@@ -2,16 +2,21 @@ import RPi.GPIO as GPIO
 import pycurl
 import certifi
 from io import BytesIO
+import pyautogui
 
 def setWerbungFalseButton_callback(channel):
     c.setopt(c.URL, 'http://127.0.0.1:8000/gpio/0')
     c.perform()
     print("set werbung flag to false")
+    pyautogui.press('f5') 
+
 
 def setWerbungTrueButton_callback(channel):
     c.setopt(c.URL, 'http://127.0.0.1:8000/gpio/1')
     c.perform()
     print("set werbung flag to true")
+    pyautogui.press('f5') 
+
 
 GPIO.setwarnings(False) 
 GPIO.setmode(GPIO.BCM) 

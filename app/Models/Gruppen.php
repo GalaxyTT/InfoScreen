@@ -14,4 +14,9 @@ class Gruppen extends Model
     ];
 
     protected $table = "gruppen";
+
+    public function getStudents()
+    {
+        return $this->hasMany(Schueler::class); //Gibt alle Schüler als einzelne Models zurück, welche sich in dieser Klasse befinden.
+    }
 }

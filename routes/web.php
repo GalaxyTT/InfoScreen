@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Route;
     Route::get('/backend/classes', [BackendController::class, 'getClasses'])
         ->name('classes');
 
+    Route::post('/backend/createClasses', [BackendController::class, 'createClass'])
+        ->name('createClass');
+
     Route::get('/backend/groups', [BackendController::class, 'getGroups'])
         ->name('groups');
 
@@ -35,7 +38,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
         ->name('gpio');
 
-    Route::get('/werbung', [WerbungController::class, 'index'])
+    Route::get('/werbung/{slideIndex?}', [WerbungController::class, 'index'])
         ->name('werbung');
 
     Route::get('/info', function()
