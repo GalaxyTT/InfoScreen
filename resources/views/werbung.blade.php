@@ -22,29 +22,16 @@
                     </div>
                 </div>
             </div>
-
-            <div class="info">  
-                <!--
-                
-                -->
-
-
-            </div>
             
             <script>
                 let slideIndex = {!! json_encode($slideIndex) !!};
                 let len = {!! json_encode($len) !!} - 1;
-                let flag = {!! json_encode($flag) !!};
-                console.log(slideIndex);
-                console.log(len);
                 showSlides();
 
                 function showSlides() 
                 {
                     let i;
                     let slide = document.getElementsByClassName("mySlides")[0];
-                    let werbung =  document.getElementsByClassName("werbung")[0];
-                    let info = document.getElementsByClassName("info")[0];
                     console.log(slide);
                     slide.style.display = "block";
                     slideIndex++;
@@ -64,7 +51,7 @@
                         info.style.display = "none";
                         setTimeout(() => {
                                 window.location.replace("http://127.0.0.1:8000/werbung/" + slideIndex);
-                            }, 1000);
+                        }, 1000);
                     }
                 }
             </script>

@@ -23,16 +23,21 @@ class WerbungController extends Controller
         $idx = 0;
         foreach($images as $image)
         {
-            $images[$idx] = str_split($image, 26)[1];
+            $images[$idx] = explode("public", $image)[1];
             $idx++;
         }
 
-        $klassen = Klassen::all();
+        if(!$flag->isFlagSet) 
+        {
+            return view('werbung', ['image' => $images[$slideIndex], 
+            'slideIndex' => $slideIndex, 
+            'len' => count($images)]);
+        }
+        else 
+        {
+            return view('info');
+        }
 
-        return view('werbung', ['flag' => $flag->isFlagSet,
-                                'image' => $images[$slideIndex], 
-                                'slideIndex' => $slideIndex, 
-                                'len' => count($images),
-                                'klassen' => $klassen]);
+        
     }
 }

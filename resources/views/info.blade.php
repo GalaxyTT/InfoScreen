@@ -12,6 +12,6 @@
 
     </head>
     <body>
-        lol
+        INFO
     </body>
 </html>
