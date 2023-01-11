@@ -40,19 +40,9 @@
                         slideIndex = 0;
                     }
 
-                    if(flag)
-                    {
-                        werbung.style.display = "none";
-                        info.style.display = "block";
-                    }
-                    else
-                    {
-                        werbung.style.display = "block";
-                        info.style.display = "none";
-                        setTimeout(() => {
-                                window.location.replace("http://127.0.0.1:8000/werbung/" + slideIndex);
-                        }, 1000);
-                    }
+                    setTimeout(() => {
+                            window.location.replace("http://127.0.0.1:8000/werbung/" + slideIndex);
+                    }, 5000);
                 }
             </script>
     </body>

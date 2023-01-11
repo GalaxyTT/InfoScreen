@@ -39,7 +39,7 @@
             
             <form action="{{route('backend')}}"><button type="submit" class="bg-cyan-500 shadow-lg shadow-cyan-500/50 rounded-lg mr-8 hover:scale-110 transition-all duration-200"><p class="p-4">Backend</p></button></form>
             <form action="{{route('werbung')}}"><button type="submit" class="bg-blue-500 shadow-lg shadow-blue-500/50 rounded-lg mr-8 hover:scale-110 transition-all duration-200"><p class="p-4">Werbe-Slider</p></button></form>
-            <form action="{{route('werbung')}}"><button type="submit" class="bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg mr-8 hover:scale-110  transition-all duration-200"><p class="p-4">Frontend</p></button></form>
+            <form action="{{route('info')}}"><button type="submit" class="bg-indigo-500 shadow-lg shadow-indigo-500/50 rounded-lg mr-8 hover:scale-110  transition-all duration-200"><p class="p-4">Info</p></button></form>
             
         </div>
     </body>
