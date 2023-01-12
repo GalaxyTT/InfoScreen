@@ -20,11 +20,13 @@ def setWerbungTrueButton_callback(channel):
 flag = 0
 
 def toggleWerbung_callback(channel):
+    global flag 
     flag = flag ^ 1
-    c.setopt(c.URL, 'http://127.0.0.1:8000/gpio/' + flag)
+    c.setopt(c.URL, 'http://127.0.0.1:8000/gpio/' + str(flag))
     c.perform()
-    print("set werbung flag to " + flag)
-    pyautogui.press('f5') 
+    print("set werbung flag to " + str(flag))
+    pyautogui.press('f5')
+ 
 
 GPIO.setwarnings(False) 
 GPIO.setmode(GPIO.BCM) 
