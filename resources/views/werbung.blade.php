@@ -11,38 +11,123 @@
             .mySlides {
                 display: none;
             }
+
+            .image-wrap 
+            {
+                width: 100%;
+                height: 100%;
+                margin: 0 auto;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .image-wrap img 
+            {
+                width: 100%;
+                position: absolute;
+            }
+
+            @-webkit-keyframes move 
+            {
+                0% {
+                    -webkit-transform-origin: bottom left;
+                    -moz-transform-origin: bottom left;
+                    -ms-transform-origin: bottom left;
+                    -o-transform-origin: bottom left;
+                    transform-origin: bottom left;
+                    transform: scale(1.0);
+                    -ms-transform: scale(1.0);
+                    /* IE 9 */
+                    
+                    -webkit-transform: scale(1.0);
+                    /* Safari and Chrome */
+                    
+                    -o-transform: scale(1.0);
+                    /* Opera */
+                    
+                    -moz-transform: scale(1.0);
+                    /* Firefox */
+                }
+                50% 
+                {
+                    transform: scale(1.2);
+                    -ms-transform: scale(1.2);
+                    /* IE 9 */
+                    
+                    -webkit-transform: scale(1.2);
+                    /* Safari and Chrome */
+                    
+                    -o-transform: scale(1.2);
+                    /* Opera */
+                    
+                    -moz-transform: scale(1.2);
+                    /* Firefox */
+                }
+                100% {
+                    -webkit-transform-origin: bottom left;
+                    -moz-transform-origin: bottom left;
+                    -ms-transform-origin: bottom left;
+                    -o-transform-origin: bottom left;
+                    transform-origin: bottom left;
+                    transform: scale(1.0);
+                    -ms-transform: scale(1.0);
+                    /* IE 9 */
+                    
+                    -webkit-transform: scale(1.0);
+                    /* Safari and Chrome */
+                    
+                    -o-transform: scale(1.0);
+                    /* Opera */
+                    
+                    -moz-transform: scale(1.0);
+                    /* Firefox */
+                }
+            }
         </style>
 
     </head>
-        <body class="antialiased">
+        <body class="antialiased" style="overflow: hidden">
             <div class="werbung">
                 <div class="flex justify-center h-screen">
-                    <div class="mySlides h-full">
-                        <img src="{{$image}}" style="width:auto; height:100%">
-                    </div>
+                    @foreach ($images as $image)
+                        <div class="mySlides h-full image-wrap">
+                            <img src="{{$image}}" style="
+                            animation: move {{$animTime}} ease;
+                            
+                            -ms-animation: move {{$animTime}} ease;
+                            -webkit-animation: move {{$animTime}} ease;
+                            -o-animation: move {{$animTime}} ease;
+                            -moz-animation: move {{$animTime}} ease;">
+                        </div>   
+                    @endforeach
                 </div>
             </div>
             
             <script>
-                let slideIndex = {!! json_encode($slideIndex) !!};
-                let len = {!! json_encode($len) !!} - 1;
+                let slideIndex = 0;
+                let slideShowDelay = {!!$slideShowDelay!!};
+
                 showSlides();
 
                 function showSlides() 
                 {
                     let i;
-                    let slide = document.getElementsByClassName("mySlides")[0];
-                    console.log(slide);
-                    slide.style.display = "block";
-                    slideIndex++;
-                    if (slideIndex > len)     
+                    let slides = document.getElementsByClassName("mySlides");
+
+                    for (i = 0; i < slides.length; i++) 
                     {
-                        slideIndex = 0;
+                        slides[i].style.display = "none";
                     }
 
-                    setTimeout(() => {
-                            window.location.replace("http://127.0.0.1:8000/werbung/" + slideIndex);
-                    }, 5000);
+                    slideIndex++;
+                    if (slideIndex > slides.length) 
+                    {
+                        slideIndex = 1;
+                    }
+
+                    slides[slideIndex-1].style.display = "block";
+
+                    setTimeout(showSlides, slideShowDelay);
                 }
             </script>
     </body>

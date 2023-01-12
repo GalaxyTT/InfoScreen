@@ -34,11 +34,14 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('/backend/settings', [BackendController::class, 'getSettings'])
         ->name('settings');
+    
+    Route::post('/backend/updateSettings', [BackendController::class, 'updateSettings'])
+        ->name('updateSettings');
 
     Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
         ->name('gpio');
 
-    Route::get('/werbung/{slideIndex?}', [WerbungController::class, 'index'])
+    Route::get('/werbung', [WerbungController::class, 'index'])
         ->name('werbung');
 
     Route::get('/info', function()

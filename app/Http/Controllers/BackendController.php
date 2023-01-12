@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Gruppen;
 use App\Models\Klassen;
+use App\Models\Settings;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 
 class BackendController extends Controller
 {
@@ -24,10 +26,6 @@ class BackendController extends Controller
     public function getGroups(){
         $this->classes = Gruppen::all();
         return $this->render(2);
-    }
-
-    public function getSettings(){
-        return $this->render(3);
     }
 
     public function render($flag){
@@ -52,5 +50,17 @@ class BackendController extends Controller
         $students = $data['students'];
 
         die(dump($students));
+    }
+
+    public function getSettings(){
+        $settings = Settings::latest()->take(1)->get();
+        $value = $settings[0]->value;
+
+        return view('Components.settings', ['value' => $value]);
+    }
+
+    public function updateSettings(Request $request){
+        Settings::latest()->where('settingName', '=', $request->sName)->update(['value'=> $request->value]);
+        return redirect(route('settings'));
     }
 }

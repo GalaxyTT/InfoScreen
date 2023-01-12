@@ -7,7 +7,12 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        'navbar' : '8%',
+        'default' : '92%',
+      }
+    },
   },
   plugins: [],
 }
