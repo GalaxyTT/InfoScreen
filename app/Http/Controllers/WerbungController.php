@@ -34,7 +34,6 @@ class WerbungController extends Controller
                 $idx++;
             }
 
-
             return view('werbung', ['images' => $images, 'slideShowDelay' => $slideShowDelay, 'animTime' => $animTime]);
         }
         else 

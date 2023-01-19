@@ -19,23 +19,27 @@
                         @csrf
                         <input type="hidden" name="id" value="-1">
                         <div class="flex justify-around items-center w-52">
-                            <div class="mr-4"><label class="block text-base text-white">Gruppe:</label></div>
-                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="lehrer" value="" size="13"></div>
+                            <div class="mr-4"><label class="block text-base text-white">Vorname:</label></div>
+                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="vorname" value="" size="13"></div>
+                        </div>
+                        <div class="flex justify-around items-center w-52">
+                            <div class="mr-4"><label class="block text-base text-white">Nachname:</label></div>
+                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="nachname" value="" size="13"></div>
                         </div>
                         <div class="flex justify-around items-center w-44">
-                            <div class="mr-2"><label class="block text-base text-white">Lehrer Kurzzeichen:</label></div>
+                            <div class="mr-2"><label class="block text-base text-white">Gruppe:</label></div>
                             <div><select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" name="gruppen_id">
-                                    @foreach ($teachers as $teacher)
-                                        <option value="{{$teacher->id}}">{{$teacher->lehrer}}</option>
+                                    @foreach ($groups as $group)
+                                        <option value="{{$group->id}}">{{$group->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="flex justify-around items-center">
-                            <div class="mr-2"><label class="block text-base text-white">Raum:</label></div>
+                        <div class="flex justify-around items-center w-60">
+                            <div class="mr-2"><label class="block text-base text-white">Gruppe:</label></div>
                             <div><select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" name="klassen_id">
-                                    @foreach ($rooms as $room)
-                                        <option value="{{$room->id}}">{{$room->raum}}</option>
+                                    @foreach ($classes as $class)
+                                        <option value="{{$class->id}}">{{$class->klasse}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -44,11 +48,12 @@
                     </form>
                 </div>
                 <div>
-                    @foreach ($groups as $group)
+                    @foreach ($students as $student)
                     <div class="flex justify-around items-center h-20 w-3/4">
-                        <p class="text-white">{{$group->name}}</p>
-                        <p class="text-white">{{$group->getTeacher->lehrer}}</p>
-                        <p class="text-white">{{$group->getRoom->raum}}</p>
+                        <p class="text-white">{{$student->vorname}}</p>
+                        <p class="text-white">{{$student->nachname}}</p>
+                        <p class="text-white">{{$student->getClass()->klasse}}</p>
+                        <p class="text-white">{{$student->getGroup()->name}}</p>
                     </div>
                     @endforeach
                 </div>

@@ -30,9 +30,6 @@ use Illuminate\Support\Facades\Route;
     Route::post('/backend/createClasses', [BackendController::class, 'createClass'])
         ->name('createClass');
 
-    Route::get('/backend/groups', [BackendController::class, 'getGroups'])
-        ->name('groups');
-
     Route::get('/backend/settings', [BackendController::class, 'getSettings'])
         ->name('settings');
     
@@ -40,13 +37,19 @@ use Illuminate\Support\Facades\Route;
         ->name('updateSettings');
 
     Route::get('/backend/students', [BackendController::class, 'getStudents'])
-        ->name('schueler');
+        ->name('students');
 
     Route::get('/backend/createStudent', [BackendController::class, 'createStudent'])
         ->name('createStudent');
     
     Route::post('/backend/saveStudent', [BackendController::class, 'saveStudent'])
         ->name('saveStudent');
+
+    Route::get('/backend/groups', [BackendController::class, 'getGroups'])
+        ->name('groups');
+
+    Route::post('/backend/saveGroup', [BackendController::class, 'saveGroup'])
+        ->name('saveGroups');
 
     Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
         ->name('gpio');

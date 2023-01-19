@@ -25,19 +25,8 @@ class InfoController extends Controller
         else 
         {
             $klassen = Klassen::all();
-            $lehrer = Lehrer::all();
-            $raeume = Raeume::all();
-            
-            $gruppen = Gruppen::all();
-            $schueler = Schueler::all();
 
-            dump($gruppen);
-            dump($klassen);
-            dump($lehrer);
-            dump($raeume);
-            dump($schueler);
-
-            return view('info');
+            return view('info', ['klassen' => $klassen]);
         }
     }
 }

@@ -13,6 +13,16 @@ module.exports = {
         'default' : '92%',
       }
     },
+    screens: {
+      'tablet': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'lg': '2560px',
+      // => @media (min-width: 1280px) { ... }
+    },
   },
   plugins: [],
 }

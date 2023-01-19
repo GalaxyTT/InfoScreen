@@ -18,4 +18,9 @@ class Klassen extends Model
     {
         return $this->hasMany(Schueler::class); //Gibt alle Schüler als einzelne Models zurück, welche sich in dieser Klasse befinden.
     }
+
+    public function getGroups()
+    {
+        return $this->belongsToMany(Gruppen::class, 'schueler')->distinct();
+    }
 }

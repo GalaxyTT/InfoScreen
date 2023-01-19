@@ -22,11 +22,11 @@ class Gruppen extends Model
 
     public function getTeacher()
     {
-        return $this->hasOne(Lehrer::class);
+        return $this->belongsTo(Lehrer::class, 'lehrer_id');
     }
 
     public function getRoom()
     {
-        return $this->hasOne(Raum::class);
+        return $this->belongsTo(Raeume::class, 'raum_id');
     }
 }

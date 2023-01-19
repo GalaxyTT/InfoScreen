@@ -11,7 +11,56 @@
         </style>
 
     </head>
-    <body>
-        INFO
+    <body class="antialiased" style="overflow: hidden">
+       <div class="info">
+            <div class="flex justify-center h-screen">
+                @foreach ($klassen as $klasse)
+                    <div class="mySlides h-full">
+                        {{$klasse->klasse}}
+                            @foreach ($klasse->getGroups as $group)
+                                <div>
+                                    {{$group->name}}
+                                    {{$group->getRoom->raum}}
+                                    {{$group->getTeacher->lehrer}}
+                                    @foreach ($group->getStudents as $student)
+                                        <div>
+                                            {{$student->vorname}}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                    </div>   
+                @endforeach
+            </div>
+        </div>
+
+        
+
+        <script>
+            let slideIndex = 0;
+
+            showSlides();
+
+            function showSlides() 
+            {
+                let i;
+                let slides = document.getElementsByClassName("mySlides");
+
+                for (i = 0; i < slides.length; i++) 
+                {
+                    slides[i].style.display = "none";
+                }
+
+                slideIndex++;
+                if (slideIndex > slides.length) 
+                {
+                    slideIndex = 1;
+                }
+
+                slides[slideIndex-1].style.display = "block";
+
+                //setTimeout(showSlides, 5000);
+            }
+        </script>
     </body>
 </html>
