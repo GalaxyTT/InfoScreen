@@ -50,17 +50,17 @@
                 }
                 50% 
                 {
-                    transform: scale(1.1);
-                    -ms-transform: scale(1.1);
+                    transform: scale(1.05);
+                    -ms-transform: scale(1.05);
                     /* IE 9 */
                     
-                    -webkit-transform: scale(1.1);
+                    -webkit-transform: scale(1.05);
                     /* Safari and Chrome */
                     
-                    -o-transform: scale(1.1);
+                    -o-transform: scale(1.05);
                     /* Opera */
                     
-                    -moz-transform: scale(1.1);
+                    -moz-transform: scale(1.05);
                     /* Firefox */
                 }
                 100% {
@@ -92,12 +92,12 @@
                     @foreach ($images as $image)
                         <div class="mySlides h-full image-wrap">
                             <img src="{{$image}}" style="
-                            animation: move {{$animTime}} ease;
+                            animation: move {{$animTime}} linear;
                             
-                            -ms-animation: move {{$animTime}} ease;
-                            -webkit-animation: move {{$animTime}} ease;
-                            -o-animation: move {{$animTime}} ease;
-                            -moz-animation: move {{$animTime}} ease;">
+                            -ms-animation: move {{$animTime}} linear;
+                            -webkit-animation: move {{$animTime}} linear;
+                            -o-animation: move {{$animTime}} linear;
+                            -moz-animation: move {{$animTime}} linear;">
                         </div>   
                     @endforeach
                 </div>
