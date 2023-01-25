@@ -17,7 +17,7 @@ class WerbungController extends Controller
         if(!$flag->isFlagSet) 
         {
             $slideShowDelay = Settings::where('settingName', 'duration')->first()->value;
-            $animTime = strval($slideShowDelay/1000) . "s";
+            $animTime = strval(($slideShowDelay/1000) + 1) . "s";
 
             $dir = "/home/pi/InfoScreen/public/images/";
             $supportedFormats = array("jpg", "JPG", "jpeg", "JPEG", "png", "PNG", "webp", "WEBP");
