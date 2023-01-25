@@ -18,7 +18,7 @@ class InfoController extends Controller
     {    
         $flag = Flags::all()->where('flagName', 'werbungFlag')->first();
         
-        if(!$flag->isFlagSet) 
+        if(false) 
         {
             return redirect(route('werbung'));
         }

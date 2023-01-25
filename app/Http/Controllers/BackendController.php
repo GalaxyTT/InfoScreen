@@ -86,11 +86,22 @@ class BackendController extends Controller
 
     }
     public function saveGroup(Request $rq){
-        Gruppen::create([
-            'name' => $rq->name,
-            'lehrer_id' => $rq->lehrer_id,
-            'raum_id' => $rq->raum_id
-        ]);
+        if($rq->id == -1)
+        {
+            Gruppen::create([
+                'name' => $rq->name,
+                'lehrer_id' => $rq->lehrer_id,
+                'raum_id' => $rq->raum_id
+            ]);
+        }
+        else
+        {
+            $groupToUpdate = Gruppem::where('id', $rq->id)->get();
+            $groupToUpdate->name = $rq->name;
+            $groupToUpdate->lehrer_id = $rq->lehrer_id;
+            $groupToUpdate->raum_id = $rq->raum_id;
+            $groupToUpdate->save();
+        }
         
     }
 }

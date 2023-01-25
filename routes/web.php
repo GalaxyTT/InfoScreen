@@ -49,7 +49,7 @@ use Illuminate\Support\Facades\Route;
         ->name('groups');
 
     Route::post('/backend/saveGroup', [BackendController::class, 'saveGroup'])
-        ->name('saveGroups');
+        ->name('saveGroup');
 
     Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
         ->name('gpio');
