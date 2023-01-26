@@ -10,17 +10,17 @@
             /* npx tailwindcss -i ./resources/css/input.css -o ./public/css/output.css --watch */
         </style>
     </head>
-    <body class="antialiased h-screen w-screen bg-zinc-900">
+    <body class="antialiased h-screen w-screen">
         @include('Components.navbar')
-        <div class="flex justify-center">
-            <div class="h-24 w-3/4 border-2 border-red-500 flex justify-center items-center">
+        <div class="flex justify-center mt-5">
+            <div class="h-24 w-3/4 border-2 flex justify-center items-center bg-gray-100 rounded-lg">
                 <div>
                 <form action="{{route('updateSettings')}}" method="POST" class="flex justify-around">
                     @csrf
                     <input type="hidden" name="sName" value="duration">
-                    <label class="block pt-3 text-sm font-medium text-white">Dauer der Anzeige des Bildes:</label>
-                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-1/6 p-2.5" type="text" name="value" value="{{$value}}">
-                    <input class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-1/6" type="submit">
+                    <label class="block pt-3 text-sm font-medium text-gray-500">Dauer der Anzeige des Bildes:</label>
+                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-700 focus:border-gray-700 block w-1/6 p-2.5" type="text" name="value" value="{{$value}}">
+                    <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-1/6" type="submit">
                 </form>
                 <div>
             </div>

@@ -11,6 +11,9 @@ use App\Models\Settings;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Type\Integer;
 
+use App\Imports\StudentsImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class BackendController extends Controller
 {
     public function index()
@@ -76,6 +79,20 @@ class BackendController extends Controller
             $studentToUpdate->save();
         }
     }
+    public function deleteStudent(Request $rq){
+        $student = Schueler::find($rq->id);
+        $student->delete();
+        return redirect(route('students'));
+    }
+
+    public function importStudents(Request $rq)
+    {
+        //die(dump($rq->file()["file"]->getPathname()));
+        Excel::import(new StudentsImport, $rq->file()["file"]);
+        die();
+        return redirect(route('students'));
+    }
+
     public function getGroups(){
         $teachers = Lehrer::all();
         $rooms = Raeume::all();
@@ -85,23 +102,22 @@ class BackendController extends Controller
     public function createGroup(){
 
     }
-    public function saveGroup(Request $rq){
-        if($rq->id == -1)
-        {
-            Gruppen::create([
-                'name' => $rq->name,
-                'lehrer_id' => $rq->lehrer_id,
-                'raum_id' => $rq->raum_id
-            ]);
-        }
-        else
-        {
-            $groupToUpdate = Gruppem::where('id', $rq->id)->get();
-            $groupToUpdate->name = $rq->name;
-            $groupToUpdate->lehrer_id = $rq->lehrer_id;
-            $groupToUpdate->raum_id = $rq->raum_id;
-            $groupToUpdate->save();
-        }
-        
+
+    public function createTeacher(Request $request)
+    {
+        Lehrer::create([
+            'lehrer' => $request->lehrer
+        ]);
+        return redirect(route('teachers'));
+    }
+
+    public function getTeachers(){
+        $teachers = Lehrer::all();
+        return view('Components.teachers', ['teachers' => $teachers]);
+    }
+
+    public function updateTeacher(Request $request){
+        Lehrer::latest()->where('id', $request->id)->update(['lehrer', $request->lehrer]);
+        return redirect(route('teachers'));
     }
 }

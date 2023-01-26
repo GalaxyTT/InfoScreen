@@ -46,6 +46,16 @@
                         </div>
                         <input class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2" type="submit">
                     </form>
+                    <form action="{{route('importStudents')}}" method="POST" class="flex justify-around items-center w-full h-20" enctype="multipart/form-data">
+                        @csrf 
+                        <div class="custom-file">
+                            <input type="file" name="file" class="custom-file-input bg-white" id="chooseFile">
+                            <label class="custom-file-label" for="chooseFile">Select file</label>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary btn-block mt-4 bg-white">
+                            Upload Files
+                        </button>
+                    </form>
                 </div>
                 <div>
                     @foreach ($students as $student)
@@ -54,6 +64,10 @@
                         <p class="text-white">{{$student->nachname}}</p>
                         <p class="text-white">{{$student->getClass()->klasse}}</p>
                         <p class="text-white">{{$student->getGroup()->name}}</p>
+                        <form action="{{route('deleteStudent')}}" method="POST">
+                            <input type="hidden" name="id" value="{{$student->id}}"class="text-white">
+                            <input class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-8 pt-2 pb-2" type="submit" value="X">
+                        </form>
                     </div>
                     @endforeach
                 </div>

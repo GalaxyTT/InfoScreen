@@ -45,11 +45,26 @@ use Illuminate\Support\Facades\Route;
     Route::post('/backend/saveStudent', [BackendController::class, 'saveStudent'])
         ->name('saveStudent');
 
+    Route::post('/backend/deleteStudent', [BackendController::class, 'deleteStudent'])
+        ->name('deleteStudent');
+
+    Route::post('/backend/importStudents', [BackendController::class, 'importStudents'])
+        ->name('importStudents');
+
     Route::get('/backend/groups', [BackendController::class, 'getGroups'])
         ->name('groups');
 
     Route::post('/backend/saveGroup', [BackendController::class, 'saveGroup'])
         ->name('saveGroup');
+
+    Route::get('/backend/teacher', [BackendController::class, 'getTeachers'])
+        ->name('teachers');
+
+    Route::post('/backend/createTeacher', [BackendController::class, 'createTeacher'])
+        ->name('createTeacher');
+
+    Route::post('/backend/saveTeacher', [BackendController::class, 'saveTeacher'])
+        ->name('saveTeacher');
 
     Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
         ->name('gpio');
