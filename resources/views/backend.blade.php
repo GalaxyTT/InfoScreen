@@ -10,7 +10,7 @@
             /* npx tailwindcss -i ./resources/css/input.css -o ./public/css/output.css --watch */
         </style>
     </head>
-    <body class="antialiased h-screen w-screen bg-zinc-900">
+    <body class="antialiased h-screen w-screen">
         @include('Components.navbar')
         @include('Components.default')
     </body>

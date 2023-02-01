@@ -20,11 +20,20 @@ class StudentsImport implements ToModel
             return null;
         }
 
-        return new Schueler([
+        $schueler = new Schueler([
             'nachname' => $row[1],
             'vorname' => $row[2],
             'klassen_id' => Klassen::where('klasse', '=', $row[5])->get()[0]->id,
             'gruppen_id' => null,
         ]);
+
+        if(Schueler::where('nachname', $schueler->nachname)->where('vorname', $schueler->vorname)->first() == null)
+        {
+            return $schueler;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

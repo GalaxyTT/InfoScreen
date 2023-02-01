@@ -28,12 +28,35 @@ class BackendController extends Controller
         return redirect(route('classes'));
     }
     public function getClasses(){
-        $classes = Klassen::all();
+        $classes = Klassen::all()->sortByDesc('klasse');
         return view('Components.classes', ['classes' => $classes]);
     }
     public function updateClass(Request $request){
         Klassen::latest()->where('id', $request->id)->update(['klasse', $request->name]);
         return redirect(route('classes'));
+    }
+    public function deleteClass(Request $request)
+    {
+        $class = Klassen::find($request->id);
+        $class->delete();
+        return redirect(route('classes'));
+    }
+
+    public function createRoom(Request $request)
+    {
+        Raeume::create([
+            'raum' => $request->raueme
+        ]);
+        return redirect(route('rooms'));
+    }
+    public function getRooms(){
+        $rooms = Raeume::all()->sortByDesc('raum');
+        return view('Components.rooms', ['rooms' => $rooms]);
+    }
+    public function deleteRoom(Request $request){
+        $room = Raeume::find($request->id);
+        $room->delete();
+        return redirect(route('rooms'));
     }
 
     public function getSettings(){
@@ -49,7 +72,7 @@ class BackendController extends Controller
     }
 
     public function getStudents(){
-        $students = Schueler::all();
+        $students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('gruppen_id')->sortByDesc('klassen_id');
         $groups = Gruppen::all();
         $classes = Klassen::all();
         return view('Components.schueler', ['students' => $students, 'groups' => $groups, 'classes' => $classes]);
@@ -78,6 +101,7 @@ class BackendController extends Controller
             $studentToUpdate->gruppen_id = $rq->gruppen_id;
             $studentToUpdate->save();
         }
+        return redirect(route('students'));
     }
     public function deleteStudent(Request $rq){
         $student = Schueler::find($rq->id);
@@ -87,10 +111,8 @@ class BackendController extends Controller
 
     public function importStudents(Request $rq)
     {
-        //die(dump($rq->file()["file"]->getPathname()));
         Excel::import(new StudentsImport, $rq->file()["file"]);
-        die();
-        return redirect(route('students'));
+        //return redirect(route('students'));
     }
 
     public function getGroups(){
@@ -102,9 +124,13 @@ class BackendController extends Controller
     public function createGroup(){
 
     }
+    public function deleteGroup(Request $request){
+        $room = Gruppen::find($request->id);
+        $room->delete();
+        return redirect(route('groups'));
+    }
 
-    public function createTeacher(Request $request)
-    {
+    public function createTeacher(Request $request){
         Lehrer::create([
             'lehrer' => $request->lehrer
         ]);
@@ -118,6 +144,12 @@ class BackendController extends Controller
 
     public function updateTeacher(Request $request){
         Lehrer::latest()->where('id', $request->id)->update(['lehrer', $request->lehrer]);
+        return redirect(route('teachers'));
+    }
+
+    public function deleteTeachers(Request $request){
+        $class = Lehrer::find($request->id);
+        $class->delete();
         return redirect(route('teachers'));
     }
 }

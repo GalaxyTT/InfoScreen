@@ -29,22 +29,29 @@
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-20 py-3">
+                                    <th scope="col" class="px-6 py-3">
                                         Id
                                     </th>
                                     <th scope="col" class="px-20 py-3">
                                         Lehrerkurzzeichen
                                     </th>
+                                    <th scope="col" class="px-20 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($teachers as $teacher)
-                                <tr class="bg-white dark:bg-gray-800">
-                                    <th scope="row" class="px-20 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <tr class="bg-white dark:bg-gray-800 even:bg-gray-50">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{$teacher->id}}
                                     </th>
                                     <td class="px-20 py-4">
                                         {{$teacher->lehrer}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <form action="{{route('deleteTeacher')}}" method="POST">
+                                            <input type="hidden" name="id" value="{{$teacher->id}}"class="text-white">
+                                            <input class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-24 pt-2 pb-2" type="submit" value="Löschen">
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -30,6 +30,18 @@ use Illuminate\Support\Facades\Route;
     Route::post('/backend/createClasses', [BackendController::class, 'createClass'])
         ->name('createClass');
 
+    Route::post('/backend/deleteClasses', [BackendController::class, 'deleteClass'])
+        ->name('deleteClass');
+
+    Route::get('/backend/rooms', [BackendController::class, 'getRooms'])
+        ->name('rooms');
+
+    Route::post('/backend/createRoom', [BackendController::class, 'createRoom'])
+        ->name('createRoom');
+
+    Route::post('/backend/deleteRoom', [BackendController::class, 'deleteRoom'])
+        ->name('deleteRoom');
+
     Route::get('/backend/settings', [BackendController::class, 'getSettings'])
         ->name('settings');
     
@@ -57,6 +69,9 @@ use Illuminate\Support\Facades\Route;
     Route::post('/backend/saveGroup', [BackendController::class, 'saveGroup'])
         ->name('saveGroup');
 
+    Route::post('/backend/deleteGroup', [BackendController::class, 'deleteGroup'])
+        ->name('deleteGroup');
+
     Route::get('/backend/teacher', [BackendController::class, 'getTeachers'])
         ->name('teachers');
 
@@ -65,6 +80,9 @@ use Illuminate\Support\Facades\Route;
 
     Route::post('/backend/saveTeacher', [BackendController::class, 'saveTeacher'])
         ->name('saveTeacher');
+
+    Route::post('/backend/deleteTeacher', [BackendController::class, 'deleteTeacher'])
+        ->name('deleteTeacher');
 
     Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
         ->name('gpio');

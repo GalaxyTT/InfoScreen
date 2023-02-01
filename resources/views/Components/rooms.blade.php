@@ -15,41 +15,41 @@
         <div class="flex justify-center mt-5">
             <div class="h-auto w-3/4 border-2 rounded-lg bg-gray-100">
                 <div class="w-full flex justify-center">
-                    <form action="{{route('createClass')}}" method="POST" class="flex justify-around items-center w-3/4 h-20">
+                    <form action="{{route('createRoom')}}" method="POST" class="flex justify-around items-center w-3/4 h-20">
                         @csrf
                         <div class="flex justify-around items-center w-60">
-                            <div class="mr-4"><label class="block text-base text-gray-500">Klassenname:</label></div>
-                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="name" value=""></div>
+                            <div class="mr-4"><label class="block text-base text-gray-500">Raum:</label></div>
+                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="raum" value=""></div>
                         </div>
-                        <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2" type="submit" value="Klasse erstellen">
+                        <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2" type="submit" value="Raum erstellen">
                     </form>
                 </div>
-                <div>
+                <div class="bg-white">
                     <div class="relative overflow-x-auto rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-20 py-3">
                                         Id
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Klassenname
+                                    <th scope="col" class="px-20 py-3">
+                                        Raum
                                     </th>
-                                    <th scope="col" class="px-6 py-3"></th>
+                                    <th scope="col" class="px-20 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($classes as $class)
+                                @foreach ($rooms as $room)
                                 <tr class="bg-white dark:bg-gray-800 even:bg-gray-50">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{$class->id}}
+                                    <th scope="row" class="px-20 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{$room->id}}
                                     </th>
-                                    <td class="px-6 py-4">
-                                        {{$class->klasse}}
+                                    <td class="px-20 py-4">
+                                        {{$room->raum}}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <form action="{{route('deleteClass')}}" method="POST">
-                                            <input type="hidden" name="id" value="{{$class->id}}"class="text-white">
+                                    <td class="px-20 py-4">
+                                        <form action="{{route('deleteRoom')}}" method="POST">
+                                            <input type="hidden" name="id" value="{{$room->id}}"class="text-white">
                                             <input class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-24 pt-2 pb-2" type="submit" value="Löschen">
                                         </form>
                                     </td>

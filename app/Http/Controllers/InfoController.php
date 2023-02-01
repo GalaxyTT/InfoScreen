@@ -18,15 +18,14 @@ class InfoController extends Controller
     {    
         $flag = Flags::all()->where('flagName', 'werbungFlag')->first();
         
-        if(false) 
+        if($flag->isFlagSet) 
         {
-            return redirect(route('werbung'));
+            $klassen = Klassen::all();
+            return view('info', ['klassen' => $klassen]);
         }
         else 
         {
-            $klassen = Klassen::all();
-
-            return view('info', ['klassen' => $klassen]);
+            return redirect(route('werbung'));
         }
     }
 }

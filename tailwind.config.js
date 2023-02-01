@@ -11,7 +11,7 @@ module.exports = {
       height: {
         'navbar' : '8%',
         'default' : '92%',
-      }
+      },
     },
     screens: {
       'tablet': '640px',

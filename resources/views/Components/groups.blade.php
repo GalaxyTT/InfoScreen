@@ -60,11 +60,14 @@
                                     <th scope="col" class="px-6 py-3">
                                         Raum
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($groups as $group)
-                                <tr class="bg-white dark:bg-gray-800">
+                                <tr class="bg-white dark:bg-gray-800 even:bg-gray-50">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{$group->id}}
                                     </th>
@@ -76,6 +79,12 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{$group->getRoom->raum}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <form action="{{route('deleteGroup')}}" method="POST">
+                                            <input type="hidden" name="id" value="{{$group->id}}"class="text-white">
+                                            <input class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-24 pt-2 pb-2" type="submit" value="Löschen">
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
