@@ -27,7 +27,7 @@ class StudentsImport implements ToModel
             'gruppen_id' => null,
         ]);
 
-        if(Schueler::where('nachname', $schueler->nachname)->where('vorname', $schueler->vorname)->first() == null)
+        if(Schueler::where('nachname', $schueler->nachname)->where('vorname', $schueler->vorname)->where('klassen_id', $schueler->klassen_id)->first() == null)
         {
             return $schueler;
         }

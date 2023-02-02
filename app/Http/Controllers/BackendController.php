@@ -45,7 +45,7 @@ class BackendController extends Controller
     public function createRoom(Request $request)
     {
         Raeume::create([
-            'raum' => $request->raueme
+            'raum' => $request->raum
         ]);
         return redirect(route('rooms'));
     }
@@ -60,6 +60,12 @@ class BackendController extends Controller
     }
 
     public function getSettings(){
+
+        Settings::create([
+
+
+        ]);
+
         $settings = Settings::latest()->take(1)->get();
         $value = $settings[0]->value;
 
@@ -72,7 +78,7 @@ class BackendController extends Controller
     }
 
     public function getStudents(){
-        $students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('gruppen_id')->sortByDesc('klassen_id');
+        $students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('gruppen_id')->sortBy('klassen_id');
         $groups = Gruppen::all();
         $classes = Klassen::all();
         return view('Components.schueler', ['students' => $students, 'groups' => $groups, 'classes' => $classes]);
@@ -112,7 +118,7 @@ class BackendController extends Controller
     public function importStudents(Request $rq)
     {
         Excel::import(new StudentsImport, $rq->file()["file"]);
-        //return redirect(route('students'));
+        return redirect(route('students'));
     }
 
     public function getGroups(){
@@ -124,6 +130,18 @@ class BackendController extends Controller
     public function createGroup(){
 
     }
+
+    public function saveGroup(Request $rq){
+       
+        Gruppen::create([
+            'name' => $rq->name,
+            'lehrer_id' => $rq->lehrer_id,
+            'raum_id' => $rq->raum_id
+        ]);
+        
+        return redirect(route('groups'));
+    }
+
     public function deleteGroup(Request $request){
         $room = Gruppen::find($request->id);
         $room->delete();

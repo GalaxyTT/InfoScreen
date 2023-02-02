@@ -20,7 +20,7 @@ class InfoController extends Controller
         
         if($flag->isFlagSet) 
         {
-            $klassen = Klassen::all();
+            $klassen = Klassen::all()->sortByDesc('klasse');
             return view('info', ['klassen' => $klassen]);
         }
         else 
