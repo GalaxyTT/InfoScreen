@@ -19,12 +19,10 @@
                         @csrf
                         <input type="hidden" name="id" value="-1">
                         <div class="flex justify-around items-center w-52">
-                            <div class="mr-4"><label class="block text-base text-gray-500">Vorname:</label></div>
-                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="vorname" value="" size="13"></div>
+                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="vorname" value="" size="13" placeholder="Vorname"></div>
                         </div>
                         <div class="flex justify-around items-center w-52">
-                            <div class="mr-4"><label class="block text-base text-gray-500">Nachname:</label></div>
-                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="nachname" value="" size="13"></div>
+                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="nachname" value="" size="13" placeholder="Nachname"></div>
                         </div>
                         <div class="flex justify-around items-center w-44">
                             <div class="mr-2"><label class="block text-base text-gray-500">Gruppe:</label></div>
