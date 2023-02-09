@@ -10,7 +10,8 @@ class Gruppen extends Model
     protected $fillable = [
         'name',
         'lehrer_id',
-        'raum_id'
+        'raum_id',
+        'json'
     ];
 
     protected $table = "gruppen";

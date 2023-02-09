@@ -78,7 +78,7 @@ class BackendController extends Controller
     }
 
     public function getStudents(){
-        $students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('gruppen_id')->sortBy('klassen_id');
+        $students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('klassen_id')->sortBy('gruppen_id');
         $groups = Gruppen::all();
         $classes = Klassen::all();
         return view('Components.schueler', ['students' => $students, 'groups' => $groups, 'classes' => $classes]);
@@ -127,10 +127,19 @@ class BackendController extends Controller
         $groups = Gruppen::all();
         return view('Components.groups', ['groups' => $groups, 'teachers' => $teachers, 'rooms' => $rooms]);
     }
-    public function createGroup(){
+
+    public function prepareFormOne(){
+        $classes = Klassen::all();
+        return view('Forms.groupsFormFirst', ['classes' => $classes]);
+    }
+
+    public function prepareFormTwo(){
 
     }
 
+    public function processForm(){
+        
+    }
     public function saveGroup(Request $rq){
        
         Gruppen::create([
