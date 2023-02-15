@@ -73,10 +73,9 @@
                 let i;
                 let slides = document.getElementsByClassName("mySlides");
 
-                setTimeout(() =>
-                    {
-                        slides[oldSlideIndex - 1].style.display = "none";
-                    }, slideShowDelay + 2000);
+                setTimeout(() => {
+                    slides[oldSlideIndex - 1].style.display = "none";
+                }, slideShowDelay + 2000);
 
                 oldSlideIndex = slideIndex;
                 slideIndex++;

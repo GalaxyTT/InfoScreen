@@ -23,7 +23,6 @@ def setWerbungTrueButton_callback(channel):
     pyautogui.press('f5') 
 
 flag = 0
-
 def toggleWerbung_callback(channel):
     global flag 
     flag = flag ^ 1
@@ -34,15 +33,11 @@ def toggleWerbung_callback(channel):
  
 
 GPIO.setwarnings(False) 
-GPIO.setmode(GPIO.BCM) 
-GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(22,GPIO.RISING,callback=setWerbungFalseButton_callback) 
-
-GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(27,GPIO.RISING,callback=setWerbungTrueButton_callback) 
+GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(17,GPIO.RISING,callback=toggleWerbung_callback,bouncetime=500) 
+GPIO.add_event_detect(17,GPIO.RISING,callback=setWerbungTrueButton_callback,bouncetime=500) 
+
 
 buffer = BytesIO()
 c = pycurl.Curl()

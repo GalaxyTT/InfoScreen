@@ -20,6 +20,7 @@ class WerbungController extends Controller
             $animTime = strval(($slideShowDelay/1000) + 1) . "s";
 
             $dir = "/home/Infoscreen/InfoScreen/public/images/";
+            
             $supportedFormats = array("jpg", "JPG", "jpeg", "JPEG", "png", "PNG", "webp", "WEBP");
             $images = array();
             foreach($supportedFormats as $format)
@@ -27,13 +28,13 @@ class WerbungController extends Controller
                 $images = array_merge($images, glob($dir . "*.$format"));
             }
 
+
             $idx = 0;
             foreach($images as $image)
             {
                 $images[$idx] = explode("public", $image)[1];
                 $idx++;
             }
-
 
             return view('werbung', ['images' => $images, 'slideShowDelay' => $slideShowDelay, 'animTime' => $animTime]);
         }
