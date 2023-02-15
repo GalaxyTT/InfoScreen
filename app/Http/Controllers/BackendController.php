@@ -60,12 +60,11 @@ class BackendController extends Controller
     }
 
     public function getSettings(){
+        
+        /*Settings::create([
 
-        Settings::create([
-
-
-        ]);
-
+        ]);*/
+        
         $settings = Settings::latest()->take(1)->get();
         $value = $settings[0]->value;
 
@@ -73,6 +72,8 @@ class BackendController extends Controller
     }
 
     public function updateSettings(Request $request){
+        die(dump($request));
+
         Settings::latest()->where('settingName', '=', $request->sName)->update(['value'=> $request->value]);
         return redirect(route('settings'));
     }

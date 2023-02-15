@@ -14,18 +14,20 @@ use App\Models\Settings;
 
 class InfoController extends Controller
 {
-    public function index()
+    public function index($slideIdx = 0)
     {    
         $flag = Flags::all()->where('flagName', 'werbungFlag')->first();
-        
-        if($flag->isFlagSet) 
+        $flag->isFlagSet = false;
+        $flag->save();
+
+        $backToAdDelay = 5000;
+        $klassen = Klassen::all()->sortByDesc('klasse');
+
+        if($slideIdx > $klassen->count() - 1)
         {
-            $klassen = Klassen::all()->sortByDesc('klasse');
-            return view('info', ['klassen' => $klassen]);
+            $slideIdx = 0;
         }
-        else 
-        {
-            return redirect(route('werbung'));
-        }
+
+        return view('info', ['klassen' => $klassen, 'slideIdx' => $slideIdx, 'backToAdDelay' => $backToAdDelay]);
     }
 }

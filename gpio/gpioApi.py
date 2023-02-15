@@ -1,8 +1,13 @@
+import os
+
+os.environ['DISPLAY'] = ':0'
+
 import RPi.GPIO as GPIO 
 import pycurl
 import certifi
 from io import BytesIO
 import pyautogui
+
 
 def setWerbungFalseButton_callback(channel):
     c.setopt(c.URL, 'http://127.0.0.1:8000/gpio/0')
@@ -37,7 +42,7 @@ GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(27,GPIO.RISING,callback=setWerbungTrueButton_callback) 
 
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(17,GPIO.RISING,callback=toggleWerbung_callback) 
+GPIO.add_event_detect(17,GPIO.RISING,callback=toggleWerbung_callback,bouncetime=500) 
 
 buffer = BytesIO()
 c = pycurl.Curl()

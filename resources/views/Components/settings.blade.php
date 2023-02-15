@@ -22,6 +22,13 @@
                     <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-700 focus:border-gray-700 block w-1/6 p-2.5" type="text" name="value" value="{{$value}}">
                     <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-1/6" type="submit">
                 </form>
+                <form action="{{route('updateSettings')}}" method="POST" class="flex justify-around">
+                    @csrf
+                    <input type="hidden" name="sName" value="backToAdDelay">
+                    <label class="block pt-3 text-sm font-medium text-gray-500">Dauer bis wierd von Info auf Werbung gewächstelt wird:</label>
+                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-700 focus:border-gray-700 block w-1/6 p-2.5" type="text" name="value" value="{{$value}}">
+                    <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-1/6" type="submit">
+                </form>
                 <div>
             </div>
         </div>

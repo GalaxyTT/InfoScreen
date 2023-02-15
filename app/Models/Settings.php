@@ -11,7 +11,8 @@ class Settings extends Model
 
     protected $fillable = [
         'settingName',
-        'value'
+        'value',
+        'settingDescription'
     ];
 
     protected $table = "settings";

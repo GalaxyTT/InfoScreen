@@ -36,31 +36,27 @@
             @endforeach
         </div>
 
-        
-
+    
         <script>
-            let slideIndex = 0;
+            let slideIndex = {!!$slideIdx!!};
+            let backToAdDelay = {!!$backToAdDelay!!}
 
             showSlides();
+
             function showSlides() 
             {
-                let i;
                 let slides = document.getElementsByClassName("infoSlide");
+                window.history.replaceState(null, document.title, "/info/" + (slideIndex + 1))
 
-                for (i = 0; i < slides.length; i++) 
+                for (let i = 0; i < slides.length; i++) 
                 {
                     slides[i].style.display = "none";
                 }
-
-                slideIndex++;
-                if (slideIndex > slides.length) 
-                {
-                    slideIndex = 1;
-                }
-
-                slides[slideIndex-1].style.display = "block";
-
-                //setTimeout(showSlides, 5000);
+                slides[slideIndex].style.display = "block";
+                
+                setTimeout(() => {
+                    window.location.href = "http://localhost:8000/werbung";
+                }, backToAdDelay);
             }
         </script>
     </body>

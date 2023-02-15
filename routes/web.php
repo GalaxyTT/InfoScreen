@@ -99,7 +99,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/werbung', [WerbungController::class, 'index'])
         ->name('werbung');
 
-    Route::get('/info', [InfoController::class, 'index'])
+    Route::get('/info/{slideIdx?}', [InfoController::class, 'index'])
         ->name('info');
 
 
