@@ -72,10 +72,13 @@ use Illuminate\Support\Facades\Route;
     Route::get('/backend/createGroup/First', [BackendController::class, 'prepareFormOne'])
         ->name('prepareFormOne');
 
-    Route::Post('/backend/createGroup/Second', [BackendController::class, 'prepareFormTwo'])
+    Route::post('/backend/createGroup/Second', [BackendController::class, 'prepareFormTwo'])
         ->name('prepareFormTwo');
     
-    Route::Post('/backend/createGroup', [BackendController::class, 'processForm'])
+    Route::post('/backend/createGroup/Third', [BackendController::class, 'prepareFormThird'])
+        ->name('prepareFormThird');
+    
+    Route::post('/backend/createGroup', [BackendController::class, 'processForm'])
         ->name('processForm');
 
     Route::post('/backend/deleteGroup', [BackendController::class, 'deleteGroup'])

@@ -18,8 +18,7 @@
                     <form action="{{route('createClass')}}" method="POST" class="flex justify-around items-center w-3/4 h-20">
                         @csrf
                         <div class="flex justify-around items-center w-60">
-                            <div class="mr-4"><label class="block text-base text-gray-500">Klassenname:</label></div>
-                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="name" value=""></div>
+                            <div><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" type="text" name="name" value="" placeholder="Klassenname"></div>
                         </div>
                         <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2" type="submit" value="Klasse erstellen">
                     </form>

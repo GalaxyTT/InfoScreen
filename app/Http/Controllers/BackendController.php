@@ -125,12 +125,25 @@ class BackendController extends Controller
         return view('Forms.groupsFormFirst', ['classes' => $classes]);
     }
 
-    public function prepareFormTwo(){
-
+    public function prepareFormTwo(Request $rq){
+        $groupName = $rq->groupName;
+        $classId = $rq->classId;
+        $studentCount = $rq->studentCount;
+        $students = Schueler::where('klassen_id', $classId)->get();
+        return view('Forms.groupsFormSecond', ['groupName' => $groupName, 'classId' => $classId, 'studentCount' => $studentCount, 'students' => $students]);
     }
 
-    public function processForm(){
-        
+    public function prepareFormThird(Request $rq){
+        $groupName = $rq->groupName;
+        $classId = $rq->classId;
+        $students = $rq->student;
+        $teachers = Lehrer::all();
+        $rooms = Raeume::all();
+        return view('Forms.groupsFormThird', ['groupName' => $groupName, 'classId' => $classId, 'teachers' => $teachers, 'rooms' => $rooms]);
+    }
+
+    public function processForm(Request $rq){
+        die(dump($rq));
     }
     public function saveGroup(Request $rq){
        

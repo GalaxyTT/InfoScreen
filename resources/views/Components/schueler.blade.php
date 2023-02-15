@@ -42,7 +42,7 @@
                                 </select>
                             </div>
                         </div>
-                        <input class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2" type="submit">
+                        <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2" type="submit">
                     </form>
                 </div>
                 <div class="bg-white rounded-lg">
