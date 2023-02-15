@@ -14,7 +14,7 @@ class SettingsUpdate extends Migration
     public function up()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->json('json');
+            $table->string('description');
         });
     }
 
@@ -25,6 +25,8 @@ class SettingsUpdate extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('settings', function (Blueprint $table) {
+            $table->dropColumn('description');
+        });
     }
 }

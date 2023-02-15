@@ -60,20 +60,11 @@ class BackendController extends Controller
     }
 
     public function getSettings(){
-        
-        /*Settings::create([
-
-        ]);*/
-        
-        $settings = Settings::latest()->take(1)->get();
-        $value = $settings[0]->value;
-
-        return view('Components.settings', ['value' => $value]);
+        $settings = Settings::all();
+        return view('Components.settings', ['settings' => $settings]);
     }
 
     public function updateSettings(Request $request){
-        die(dump($request));
-
         Settings::latest()->where('settingName', '=', $request->sName)->update(['value'=> $request->value]);
         return redirect(route('settings'));
     }

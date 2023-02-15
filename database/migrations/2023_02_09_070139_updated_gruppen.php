@@ -25,6 +25,8 @@ class UpdatedGruppen extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gruppen');
+        Schema::table('gruppen', function (Blueprint $table) {
+            $table->dropColumn('json');
+        });
     }
 }
