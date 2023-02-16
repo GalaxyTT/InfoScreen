@@ -10,24 +10,25 @@
             /*  npx tailwindcss -i ./resources/css/input.css -o ./public/css/output.css --watch */
         </style>
     </head>
-    <body class="antialiased h-screen w-screen">
+    <body class="antialiased h-screen w-screen" style="background-image: url('/bg/gplay.png')">
         <form action="{{route('processForm')}}" method="post">
             <input type="hidden" name="groupName" value="{{$groupName}}">
             <input type="hidden" name="classId" value="{{$classId}}">
+            <input type="hidden" name="students" value="{{$students}}">
             <div id="dateContainer">
             <div id="singleDate">
-                <input type="date" name="plan[date][]">
-                <select name="plan[date][teacher]">
+                <input type="date" name="dates[]">
+                <select name="teachers[]">
                     @foreach($teachers as $teacher)
                         <option value="{{$teacher->id}}">{{$teacher->lehrer}}</option>
                     @endforeach
                 </select>
-                <select name="room[]">
+                <select name="rooms[]">
                     @foreach($rooms as $room)
                         <option value="{{$room->id}}">{{$room->raum}}</option>
                     @endforeach
                 </select>
-                <input type="text" name="exercise[]" placeholder="Laborübung">
+                <input type="text" name="exercises[]" placeholder="Laborübung">
             </div>
             </div>
             <button onclick="createNew();" type="button">Fuck you</button>

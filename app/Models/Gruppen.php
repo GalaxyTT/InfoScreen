@@ -9,25 +9,27 @@ class Gruppen extends Model
 {
     protected $fillable = [
         'name',
-        'lehrer_id',
-        'raum_id',
         'json'
     ];
 
     protected $table = "gruppen";
 
+    public function getClass()
+    {
+        $classId = json_decode($this->json)->classId;
+        return Klassen::where('id', $classId)->first();
+    }
+
     public function getStudents()
     {
-        return $this->hasMany(Schueler::class); //Gibt alle Schüler als einzelne Models zurück, welche sich in dieser Klasse befinden.
-    }
-
-    public function getTeacher()
-    {
-        return $this->belongsTo(Lehrer::class, 'lehrer_id');
-    }
-
-    public function getRoom()
-    {
-        return $this->belongsTo(Raeume::class, 'raum_id');
+        $studentsJson = json_decode(json_decode($this->json)->students);
+        
+        $students = array();
+        foreach ($studentsJson as $student) 
+        {
+            $querry = Schueler::where('id', $student)->first();
+            array_push($students, $querry);
+        }
+        return $students;
     }
 }

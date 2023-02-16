@@ -70,7 +70,14 @@ class BackendController extends Controller
     }
 
     public function getStudents(){
-        $students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('klassen_id')->sortBy('gruppen_id');
+        //$students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('klassen_id')->sortBy('gruppen_id');
+        
+        $students = Schueler::all()->sortBy([
+            ['gruppen_id', 'asc'],
+            ['klassen_id', 'asc'],
+            ['nachname', 'asc', SORT_STRING | SORT_FLAG_CASE],
+        ]);
+        
         $groups = Gruppen::all();
         $classes = Klassen::all();
         return view('Components.schueler', ['students' => $students, 'groups' => $groups, 'classes' => $classes]);
@@ -136,14 +143,31 @@ class BackendController extends Controller
     public function prepareFormThird(Request $rq){
         $groupName = $rq->groupName;
         $classId = $rq->classId;
-        $students = $rq->student;
+        $students = json_encode($rq->student);
         $teachers = Lehrer::all();
         $rooms = Raeume::all();
-        return view('Forms.groupsFormThird', ['groupName' => $groupName, 'classId' => $classId, 'teachers' => $teachers, 'rooms' => $rooms]);
+        return view('Forms.groupsFormThird', ['groupName' => $groupName, 'classId' => $classId, 'teachers' => $teachers, 'rooms' => $rooms, 'students' => $students]);
     }
 
     public function processForm(Request $rq){
-        die(dump($rq));
+        $groupName = $rq->groupName;
+        $classId = $rq->classId;
+        $students = $rq->students;
+        $dates = $rq->dates;
+        $teachers = $rq->teachers;
+        $rooms = $rq->rooms;
+        $exercises = $rq->exercises;
+        $tempArr = array();
+        foreach ($dates as $i => $value) {
+            array_push($tempArr, array('date' => $value, 'dayInfo' => array('teacher' => $teachers[$i], 'room' => $rooms[$i], 'exercise' => $exercises[$i])));
+        }
+        $jsonArr = array('classId' => $classId, 'students' => $students, 'dates' => $tempArr);
+        $json = json_encode($jsonArr);
+        Gruppen::create([
+            'name' => $groupName,
+            'json' => $json
+        ]);
+        return redirect(route('groups'));
     }
     public function saveGroup(Request $rq){
        

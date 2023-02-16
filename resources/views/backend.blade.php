@@ -10,7 +10,7 @@
             /* npx tailwindcss -i ./resources/css/input.css -o ./public/css/output.css --watch */
         </style>
     </head>
-    <body class="antialiased h-screen w-screen">
+    <body class="antialiased h-screen w-screen" style="background-image: url('/bg/gplay.png')">
         @include('Components.navbar')
         @include('Components.default')
     </body>

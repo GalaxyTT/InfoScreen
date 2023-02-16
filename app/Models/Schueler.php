@@ -18,13 +18,13 @@ class Schueler extends Model
 
     public function getClass()
     {
-        //return $this->belongsTo(Klassen::class);
-        return Klassen::where('id', $this->klassen_id)->get()[0];
+        return $this->belongsTo(Klassen::class, 'klassen_id');
+        //return Klassen::where('id', $this->klassen_id)->get()[0];
     }
 
     public function getGroup()
     {
-        //return $this->belongsTo(Gruppen::class);
-        return Gruppen::where('id', $this->gruppen_id)->get()[0];
+        return $this->belongsTo(Gruppen::class, 'gruppen_id');
+        //return Gruppen::where('id', $this->gruppen_id)->get()[0];
     }
 }

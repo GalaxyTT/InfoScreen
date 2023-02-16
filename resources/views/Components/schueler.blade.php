@@ -10,7 +10,7 @@
             /* npx tailwindcss -i ./resources/css/input.css -o ./public/css/output.css --watch */
         </style>
     </head>
-    <body class="antialiased h-screen w-screen">
+    <body class="antialiased h-screen w-screen" style="background-image: url('/bg/gplay.png')">
         @include('Components.navbar')
         <div class="flex justify-center mt-5">
             <div class="h-auto w-3/4 border-2 rounded-lg bg-gray-100">
@@ -94,10 +94,10 @@
                                         {{$student->nachname}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{$student->getClass()->klasse}}
+                                        {{$student->getClass->klasse}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{$student->gruppen_id != null ? $student->getGroup()->name : "--"}}
+                                        {{$student->gruppen_id != null ? $student->getGroup->name : "--"}}
                                     </td>
                                     <td class="px-6 py-4">
                                         <form action="{{route('deleteStudent')}}" method="POST">

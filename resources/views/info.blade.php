@@ -54,9 +54,9 @@
                 }
                 slides[slideIndex].style.display = "block";
                 
-                setTimeout(() => {
+                /*setTimeout(() => {
                     window.location.href = "http://localhost:8000/werbung";
-                }, backToAdDelay);
+                }, backToAdDelay);*/
             }
         </script>
     </body>
