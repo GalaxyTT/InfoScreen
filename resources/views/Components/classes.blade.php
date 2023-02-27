@@ -31,7 +31,7 @@
                                     <th scope="col" class="px-6 py-3">
                                         Id
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-auto py-3">
                                         Klassenname
                                     </th>
                                     <th scope="col" class="px-6 py-3"></th>
@@ -43,14 +43,16 @@
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{$class->id}}
                                     </th>
-                                    <td class="px-6 py-4">
+                                    <td class="px-auto py-4">
                                         {{$class->klasse}}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <form action="{{route('deleteClass')}}" method="POST">
-                                            <input type="hidden" name="id" value="{{$class->id}}"class="text-white">
-                                            <input class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-24 pt-2 pb-2" type="submit" value="Löschen">
-                                        </form>
+                                    <td class="px-6 py-4 flex justify-end">
+                                        <div>
+                                            <form action="{{route('deleteClass')}}" method="POST">
+                                                <input type="hidden" name="id" value="{{$class->id}}"class="text-white">
+                                                <input class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-24 pt-2 pb-2" type="submit" value="Löschen">
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach

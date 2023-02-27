@@ -75,7 +75,12 @@
             </div>
         </div>
         <div class="absolute bottom-8 right-8">
-            <a class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-md pt-2 pb-2 px-4" href="{{route('prepareFormOne')}}">Gruppe erstellen</a>
+            <a class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-6xl px-5" href="{{route('prepareFormOne')}}">
+                <svg width="46px" height="46px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline">
+                    <path d="M5 12H19" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 5L12 19" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </div>
     </body>
 </html>

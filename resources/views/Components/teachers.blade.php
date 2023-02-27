@@ -46,11 +46,13 @@
                                     <td class="px-20 py-4">
                                         {{$teacher->lehrer}}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <form action="{{route('deleteTeacher')}}" method="POST">
-                                            <input type="hidden" name="id" value="{{$teacher->id}}"class="text-white">
-                                            <input class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-24 pt-2 pb-2" type="submit" value="Löschen">
-                                        </form>
+                                    <td class="px-6 py-4 flex justify-end">
+                                        <div>
+                                            <form action="{{route('deleteTeacher')}}" method="POST">
+                                                <input type="hidden" name="id" value="{{$teacher->id}}"class="text-white">
+                                                <input class="text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-700 font-medium rounded-lg text-sm w-24 pt-2 pb-2" type="submit" value="Löschen">
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
