@@ -10,18 +10,20 @@
             /* npx tailwindcss -i ./resources/css/input.css -o ./public/css/output.css --watch */
         </style>
     </head>
-    <body class="antialiased h-screen w-screen" style="background-image: url('/bg/gplay.png')">
-        <form action="{{route('prepareFormThird')}}" method="post">
-            <input type="hidden" name="groupName" value="{{$groupName}}">
-            <input type="hidden" name="classId" value="{{$classId}}">
-            @for ($i = 0; $i < $studentCount; $i++)
-                <select name="student[]" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5">
-                    @foreach($students as $student)
-                        <option value="{{$student->id}}">{{$student->vorname." ".$student->nachname}}</option>
-                    @endforeach
-                </select>
-            @endfor
-            <input type="submit">
-        </form>
+    <body class="antialiased h-screen w-screen flex justify-center items-center" style="background-image: url('/bg/gplay.png')">
+        <div class="h-auto bg-white border-2 border-gray-100 rounded-xl w-1/3 flex justify-center">
+            <div><form action="{{route('prepareFormThird')}}" method="post">
+                <input type="hidden" name="groupName" value="{{$groupName}}">
+                <input type="hidden" name="classId" value="{{$classId}}">
+                @for ($i = 0; $i < $studentCount; $i++)
+                    <select name="student[]" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block p-4 my-4">
+                        @foreach($students as $student)
+                            <option value="{{$student->id}}">{{$student->vorname." ".$student->nachname}}</option>
+                        @endforeach
+                    </select>
+                @endfor
+                <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2 my-3" type="submit">
+            </form></div>
+        </div>
     </body>
 </html>
