@@ -85,7 +85,7 @@ class BackendController extends Controller
     }
     public function createStudent(){
         $classes = Klassen::all();
-        return view('createStudent', ['classes' => $classes]);
+        return view('Forms.createStudent', ['classes' => $classes]);
     }
     public function saveStudent(Request $rq)
     {

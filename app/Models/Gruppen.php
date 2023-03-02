@@ -23,13 +23,15 @@ class Gruppen extends Model
     public function getStudents()
     {
         $studentsJson = json_decode(json_decode($this->json)->students);
-        
-        $students = array();
+
+        $students = collect([]);
         foreach ($studentsJson as $student) 
         {
             $querry = Schueler::where('id', $student)->first();
-            array_push($students, $querry);
+            $students->push($querry);
         }
+
+        $students = $students->sortBy('nachname');
         return $students;
     }
 }

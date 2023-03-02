@@ -11,31 +11,31 @@
         </style>
 
     </head>
-    <body class="antialiased">
-       <div class="relative rounded-xl overflow-auto p-8">
-            @foreach ($klassen as $klasse)
-                <div class="infoSlide">
-                    <div class="grid grid-cols-2 gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
-                        <div class="col-span-2 p-4 rounded-lg shadow-lg bg-green-700">{{$klasse->klasse}}</div>
-                        @foreach ($klasse->getGroups as $group)
+    <body class="antialiased"  style="background-image: url('/bg/gplay.png')">
+        @foreach ($klassen as $klasse)
+            <div class="infoSlide">
+                <div class="col-span-2 p-4 shadow-lg bg-green-700 font-mono text-white text-sm text-center font-bold leading-6 ">{{$klasse->klasse}} - {{date("d-m-Y", strtotime($date))}}</div>
+                    <div class="relative rounded-xl overflow-auto p-8 grid grid-cols-2 gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
+                    @foreach ($frontendGroups as $frontendGroup)
+                        @if($frontendGroup['class'] == $klasse)
                             <div class="p-4 rounded-lg shadow-lg bg-green-700	">
-                                <div>{{$group->name}}</div>
+                                <div>{{$frontendGroup['name']}}</div>
                                 <div>
-                                    @foreach ($group->getStudents as $student)
+                                    @foreach ($frontendGroup['students'] as $student)
                                         <div>{{$student->nachname . ", " . $student->vorname}}</div>
                                     @endforeach
                                 </div>
                                 <div class="">
-                                    {{$group->getTeacher->lehrer}}
-                                    {{$group->getRoom->raum}}                      
+                                    {{$frontendGroup['teacher']->lehrer}}
+                                    {{$frontendGroup['room']->raum}}   
+                                    {{$frontendGroup['exercise']}}                   
                                 </div>
                             </div>
-                        @endforeach
-                    </div>   
-                </div>
-            @endforeach
-        </div>
-
+                        @endif
+                    @endforeach
+                </div>   
+            </div>
+        @endforeach
     
         <script>
             let slideIndex = {!!$slideIdx!!};
@@ -46,7 +46,7 @@
             function showSlides() 
             {
                 let slides = document.getElementsByClassName("infoSlide");
-                window.history.replaceState(null, document.title, "/info/" + (slideIndex + 1))
+                //window.history.replaceState(null, document.title, "/info/" + (slideIndex + 1))
 
                 for (let i = 0; i < slides.length; i++) 
                 {

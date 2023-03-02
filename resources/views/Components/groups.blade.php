@@ -11,12 +11,6 @@
         </style>
     </head>
     <body class="antialiased h-screen w-screen rounded-lg" style="background-image: url('/bg/gplay.png')">
-        @php 
-            foreach($groups as $group)
-            {
-                dump(json_decode($group->json));
-            }
-        @endphp
         @include('Components.navbar')
         <div class="flex justify-center mt-5">
             <div class="h-auto w-3/4 border-2 bg-gray-100 rounded-lg">
@@ -74,9 +68,9 @@
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-8 right-8">
-            <a class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-6xl px-5" href="{{route('prepareFormOne')}}">
-                <svg width="46px" height="46px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline">
+        <div class="fixed bottom-8 right-8">
+            <a class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-6xl px-[1.125rem]" href="{{route('prepareFormOne')}}">
+                <svg width="46px" height="46px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline relative" style="top: -9px;">
                     <path d="M5 12H19" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 5L12 19" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
