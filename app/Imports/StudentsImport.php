@@ -20,10 +20,20 @@ class StudentsImport implements ToModel
             return null;
         }
 
+        $klasse = Klassen::where('klasse', $row[5])->get()->first();
+
+        if($klasse == null)
+        {
+            $klasse = new Klassen([
+                'klasse' => $row[5],
+            ]);
+            $klasse->save();
+        }
+
         $schueler = new Schueler([
             'nachname' => $row[1],
             'vorname' => $row[2],
-            'klassen_id' => Klassen::where('klasse', '=', $row[5])->get()[0]->id,
+            'klassen_id' => $klasse->id,
             'gruppen_id' => null,
         ]);
 
