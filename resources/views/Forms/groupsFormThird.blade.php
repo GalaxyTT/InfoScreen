@@ -31,7 +31,7 @@
                 <input type="text" name="exercises[]" placeholder="Laborübung">
             </div>
             </div>
-            <button onclick="createNew();" type="button">Fuck you</button>
+            <button onclick="createNew();" type="button">add</button>
             <input type="submit">
         </form>
     </body>

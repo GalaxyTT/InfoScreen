@@ -19,17 +19,17 @@
                     @foreach ($frontendGroups as $frontendGroup)
                         @if($frontendGroup['class'] == $klasse)
                             <div class="p-4 rounded-lg shadow-lg bg-green-700 flex flex-col justify-between">
-                                <div class="text-4xl flex justify-between mb-4">
+                                <div class="text-4xl flex justify-between mb-10">
                                     <div class="text-left w-1/3">{{$frontendGroup['name']}}</div>
                                     <div class="text-center w-1/3">Lehrer: {{$frontendGroup['teacher']->lehrer}}</div>
                                     <div class="text-right w-1/3">Raum: {{$frontendGroup['room']->raum}}</div>
                                 </div>
                                 <div class ="text-3xl font-normal flex flex-col justify-center">
                                     @foreach ($frontendGroup['students'] as $student)
-                                        <div class="leading-relaxed">{{$student->nachname . " " . $student->vorname}}</div>
+                                        <div class="leading-[3.75rem]">{{$student->nachname . " " . $student->vorname}}</div>
                                     @endforeach
                                 </div>
-                                <div class="text-4xl flex mt-4 justify-start">
+                                <div class="text-4xl flex mt-10 justify-start">
                                     <div class="">Laborübung: {{$frontendGroup['exercise']}}</div>
                                 </div>
                             </div>
