@@ -70,12 +70,15 @@ class BackendController extends Controller
     }
 
     public function getStudents(){
-        //$students = Schueler::all()->sortBy('nachname', SORT_STRING | SORT_FLAG_CASE)->sortBy('klassen_id')->sortBy('gruppen_id');
+        
+        //$students = Schueler::all()->sortBy('nachname', SORT_NATURAL|SORT_FLAG_CASE);
         
         $students = Schueler::all()->sortBy([
             ['gruppen_id', 'asc'],
             ['klassen_id', 'asc'],
-            ['nachname', 'asc', SORT_STRING | SORT_FLAG_CASE],
+            function($student) {
+                return strtolower($student->nachname);
+            }
         ]);
         
         $groups = Gruppen::all();

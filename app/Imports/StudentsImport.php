@@ -24,10 +24,9 @@ class StudentsImport implements ToModel
 
         if($klasse == null)
         {
-            $klasse = new Klassen([
+            Klassen::create([
                 'klasse' => $row[5],
             ]);
-            $klasse->save();
         }
 
         $schueler = new Schueler([
@@ -37,7 +36,11 @@ class StudentsImport implements ToModel
             'gruppen_id' => null,
         ]);
 
-        if(Schueler::where('nachname', $schueler->nachname)->where('vorname', $schueler->vorname)->where('klassen_id', $schueler->klassen_id)->first() == null)
+        
+        if(Schueler::where('nachname', $schueler->nachname)
+                     ->where('vorname', $schueler->vorname)
+                     ->where('klassen_id', $schueler->klassen_id)
+                     ->first() == null)
         {
             return $schueler;
         }
