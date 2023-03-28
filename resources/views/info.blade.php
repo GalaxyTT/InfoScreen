@@ -14,8 +14,8 @@
     <body class="antialiased"  style="background-image: url('/bg/gplay.png')">
         @foreach ($klassen as $klasse)
             <div class="infoSlide">
-                <div class="text-8xl p-16 shadow-lg bg-green-700 font-mono text-white text-center font-bold leading-6 uppercase">{{$klasse->klasse}} - {{date("d-m-Y", strtotime($date))}}</div>
-                    <div class="relative rounded-xl overflow-auto p-8 grid grid-cols-3 gap-4 font-mono text-white text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
+                <div class="text-8xl p-16 shadow-lg bg-green-700 font-mono text-white text-center font-bold leading-6 uppercase">{{$klasse->klasse}} - {{date("d.m Y", strtotime($date))}}</div>
+                    <div class="relative overflow-auto p-8 grid grid-cols-3 gap-4 font-mono text-white text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
                     @foreach ($frontendGroups as $frontendGroup)
                         @if($frontendGroup['class'] == $klasse)
                             <div class="p-4 rounded-lg shadow-lg bg-green-700 flex flex-col justify-between">
@@ -41,14 +41,15 @@
     
         <script>
             let slideIndex = {!!$slideIdx!!};
-            let backToAdDelay = {!!$backToAdDelay!!}
+            let backToAdDelay = {!!$backToAdDelay!!};
 
             showSlides();
-
+            
             function showSlides() 
             {
                 let slides = document.getElementsByClassName("infoSlide");
-                //window.history.replaceState(null, document.title, "/info/" + (slideIndex + 1))
+
+                window.history.replaceState(null, document.title, "/info/" + (slideIndex + 1));
 
                 for (let i = 0; i < slides.length; i++) 
                 {

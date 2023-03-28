@@ -18,16 +18,29 @@ class InfoController extends Controller
 {
     public function index($slideIdx = 0)
     {    
-        $flag = Flags::all()->where('flagName', 'werbungFlag')->first();
+        $flag = Flags::where('flagName', 'werbungFlag')->first();
         $flag->isFlagSet = false;
         $flag->save();
-
-        $backToAdDelay = 5000;
+        
+        $backToAdDelay = Settings::where('settingName', 'backToAdDelay')->first()->value;
 
         $groups = Gruppen::all();
-        $klassen = Klassen::all()->sortByDesc('klasse');
-        
         $today = Carbon::now()->toDateString();
+        $ids = collect();
+        foreach($groups as $group)
+        {
+            $json = json_decode($group->json);
+            foreach($json->dates as $date)
+            {
+                if($date->date == $today)
+                {
+                    $ids->push($json->classId);
+                }
+            }
+        }
+        $klassen = Klassen::whereIn('id', $ids)->get();
+
+
         $frontendGroups = array();
         foreach($groups as $group)
         {
@@ -43,11 +56,11 @@ class InfoController extends Controller
                     $room = Raeume::where('id', $date->dayInfo->room)->first();
                     
                     array_push($frontendGroups, array("name" => $name, 
-                                                    "class" => $class, 
-                                                    "students" => $group->getStudents(), 
-                                                    "teacher" => $teacher,
-                                                    "room" => $room,
-                                                    "exercise" => $date->dayInfo->exercise));
+                                                      "class" => $class, 
+                                                      "students" => $group->getStudents(), 
+                                                      "teacher" => $teacher,
+                                                      "room" => $room,
+                                                      "exercise" => $date->dayInfo->exercise));
                 }
             }   
         }
@@ -57,8 +70,10 @@ class InfoController extends Controller
             $slideIdx = 0;
         }
 
-        return view('info', ['klassen' => $klassen, 'frontendGroups' => $frontendGroups, 'date' => $today,'slideIdx' => $slideIdx, 'backToAdDelay' => $backToAdDelay]);
+        return view('info', ['klassen' => $klassen, 
+                             'frontendGroups' => $frontendGroups, 
+                             'date' => $today, 
+                             'slideIdx' => $slideIdx, 
+                             'backToAdDelay' => $backToAdDelay]);
     }
-
-
 }
