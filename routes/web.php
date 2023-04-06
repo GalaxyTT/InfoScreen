@@ -96,6 +96,15 @@ use Illuminate\Support\Facades\Route;
     Route::post('/backend/deleteTeacher', [BackendController::class, 'deleteTeacher'])
         ->name('deleteTeacher');
 
+    Route::get('/backend/images', [BackendController::class, 'getImages'])
+        ->name('images');
+
+    Route::post('/backend/uploadImages', [BackendController::class, 'uploadImage'])
+        ->name('uploadImage');
+    
+    Route::post('/backend/deleteImage', [BackendController::class, 'deleteImage'])
+        ->name('deleteImage'); 
+
     Route::get('/gpio/{type}', [GpioApiController::class, 'setFlag'])
         ->name('gpio');
 

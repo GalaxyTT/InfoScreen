@@ -13,6 +13,8 @@ use Ramsey\Uuid\Type\Integer;
 
 use App\Imports\StudentsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
+
 
 class BackendController extends Controller
 {
@@ -210,5 +212,42 @@ class BackendController extends Controller
         $class = Lehrer::find($request->id);
         $class->delete();
         return redirect(route('teachers'));
+    }
+
+    public function getImages()
+    {
+        $dir = explode("app", __DIR__)[0] . "public/images/";
+        
+        $supportedFormats = array("jpg", "JPG", "jpeg", "JPEG", "png", "PNG", "webp", "WEBP");
+        $images = array();
+        foreach($supportedFormats as $format)
+        {
+            $images = array_merge($images, glob($dir . "*.$format"));
+        }
+
+        $idx = 0;
+        foreach($images as $image)
+        {
+            $images[$idx] = explode("public", $image)[1];
+            $idx++;
+        }
+
+        return view('Components.images', ['images' => $images]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $images = $request->file('images');
+        foreach ($images as $image) {
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+        }
+        return redirect(route('images'));
+    }
+
+    public function deleteImage(Request $request)
+    {
+        File::delete(public_path($request->image));
+        return redirect(route('images'));
     }
 }

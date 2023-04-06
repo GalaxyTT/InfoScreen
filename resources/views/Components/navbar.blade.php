@@ -22,6 +22,8 @@
               <a href="{{route('students')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="students">Schüler</a>
               
               <a href="{{route('settings')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="settings">Einstellungen</a>
+            
+              <a href="{{route('images')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="images">Bilder</a>
             </div>
           </div>
         </div>
