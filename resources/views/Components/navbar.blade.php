@@ -9,6 +9,8 @@
             <div class="flex space-x-4">
               <a href="{{route('werbung')}}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page"  id="noneee">Werbescreen</a>
   
+              <a href="{{route('info')}}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page"  id="noneee">Infoscreen</a>
+
               <a href="{{route('classes')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="classes">Klassen</a>
   
               <a href="{{route('teachers')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="teacher">Lehrer</a>

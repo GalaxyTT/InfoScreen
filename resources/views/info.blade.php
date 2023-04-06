@@ -14,7 +14,7 @@
     <body class="antialiased"  style="background-image: url('/bg/gplay.png')">
         @foreach ($klassen as $klasse)
             <div class="infoSlide">
-                <div class="text-8xl p-16 shadow-lg bg-green-700 font-mono text-white text-center font-bold leading-6 uppercase">{{$klasse->klasse}} - {{date("d.m Y", strtotime($date))}}</div>
+                <div class="text-8xl p-16 shadow-lg bg-green-700 font-mono text-white text-center font-bold leading-6 uppercase">{{$klasse->klasse}} - {{date("d.m.Y", strtotime($date))}}</div>
                     <div class="relative overflow-auto p-8 grid grid-cols-3 gap-4 font-mono text-white text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
                     @foreach ($frontendGroups as $frontendGroup)
                         @if($frontendGroup['class'] == $klasse)
@@ -57,9 +57,9 @@
                 }
                 slides[slideIndex].style.display = "block";
                 
-                /*setTimeout(() => {
+                setTimeout(() => {
                     window.location.href = "http://localhost:8000/werbung";
-                }, backToAdDelay);*/
+                }, backToAdDelay);
             }
         </script>
     </body>
