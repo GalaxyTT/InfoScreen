@@ -19,16 +19,17 @@
             <form action="{{route('uploadImage')}}" method="POST" class="flex flex-col justify-center items-center my-4" enctype="multipart/form-data">
                 @csrf 
                 <div class="py-4"><input type="file" name="images[]" multiple class="rounded-lg py-2 px-4 mx-5 bg-gray-800 text-white text-sm font-medium" id="chooseFile"></div>
-                <div class="py-4 w-1/2"><input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full pt-4 pb-4" type="submit"></div>
+                <div class="py-4 w-1/2"><input type="submit" class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full pt-4 pb-4""></div>
             </form>    
         </div>
         <div class="grid grid-cols-3 gap-x-6 gap-y-10 mx-6">
             @foreach($images as $image)
                 <div class="flex flex-col">
                     <div class="mb-2.5"><img src="{{ $image }}"></div>
-                    <form action="{{ route('deleteImage', ['image' => $image]) }}" method="POST">
+                    <form action="{{ route('deleteImage')}}" method="POST">
                         @csrf
-                        <button type="submit" class="flex justify-center text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full pt-4 pb-4">Remove</button>
+                        <input type="hidden" name="image" value="{{$image}}">
+                        <input type="submit" value="Bild löschen" class="flex justify-center text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full pt-4 pb-4">
                     </form>
                 </div>
             @endforeach

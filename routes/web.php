@@ -99,7 +99,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/backend/images', [BackendController::class, 'getImages'])
         ->name('images');
 
-    Route::post('/backend/uploadImages', [BackendController::class, 'uploadImage'])
+    Route::post('/backend/uploadImage', [BackendController::class, 'uploadImage'])
         ->name('uploadImage');
     
     Route::post('/backend/deleteImage', [BackendController::class, 'deleteImage'])

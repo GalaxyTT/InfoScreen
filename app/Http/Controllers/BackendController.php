@@ -208,7 +208,7 @@ class BackendController extends Controller
         return redirect(route('teachers'));
     }
 
-    public function deleteTeachers(Request $request){
+    public function deleteTeacher(Request $request){
         $class = Lehrer::find($request->id);
         $class->delete();
         return redirect(route('teachers'));
@@ -240,7 +240,8 @@ class BackendController extends Controller
         $images = $request->file('images');
         foreach ($images as $image) {
             $imageName = time() . '-' . $image->getClientOriginalName();
-            $image->move(public_path('images'), $imageName);
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $imageName);
         }
         return redirect(route('images'));
     }
