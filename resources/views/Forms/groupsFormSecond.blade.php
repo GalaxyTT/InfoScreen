@@ -11,7 +11,7 @@
         </style>
     </head>
     <body class="antialiased h-screen w-screen flex justify-center items-center" style="background-image: url('/bg/gplay.png')">
-        <div class="h-auto bg-white border-2 border-gray-100 rounded-xl w-1/3 flex justify-center">
+        <div class="h-auto border-2 bg-gray-100 rounded-lg w-1/4 flex justify-center">
             <div><form action="{{route('prepareFormThird')}}" method="post">
                 <input type="hidden" name="groupName" value="{{$groupName}}">
                 <input type="hidden" name="classId" value="{{$classId}}">
@@ -22,7 +22,7 @@
                         @endforeach
                     </select>
                 @endfor
-                <input class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2 my-3" type="submit">
+                <input class="w-full text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-1/6 pt-2 pb-2 my-3" type="submit">
             </form></div>
         </div>
     </body>
